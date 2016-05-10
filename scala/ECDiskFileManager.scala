@@ -1,0 +1,4 @@
+
+class ECDiskFileManager extends BaseDiskFileManager {
+}
+

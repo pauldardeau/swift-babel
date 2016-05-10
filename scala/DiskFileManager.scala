@@ -1,0 +1,4 @@
+
+class DiskFileManager extends BaseDiskFileManager {
+}
+

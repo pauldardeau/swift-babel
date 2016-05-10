@@ -1,0 +1,5 @@
+module FileMetaData;
+
+class FileMetaData {
+}
+
