@@ -1,19 +1,19 @@
 import java.util.TreeSet;
 
 
-public class Ring {
+class Ring {
 
-    private String serialized_path;
-    private int reload_time;
-    private int _rtime;
-    private int _mtime;
+    serialized_path: String
+    reload_time: Int
+    _rtime: Int
+    _mtime: Int
     //private Object _devs;
-    private int _num_regions;
-    private int _num_zones;
-    private int _num_devs;
-    private int _num_ips;
-    private int[][] _replica2part2dev_id;
-    private int _part_shift;
+    _num_regions: Int
+    _num_zones: Int
+    _num_devs: Int
+    _num_ips: Int
+    _replica2part2dev_id: Array[Array[Int]]
+    _part_shift: Int
     //private Object tier2devs;
     //private Object tiers_by_length;
 

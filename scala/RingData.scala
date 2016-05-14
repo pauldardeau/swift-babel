@@ -3,12 +3,12 @@
 /**
  * Partitioned consistent hashing ring data (used for serialization).
  */
-public class RingData {
+class RingData {
 
-    private RingStructure _ring;
-    //private StorageDevice[] devs;
-    //private int[][] _replica2part2dev_id;
-    //private int _part_shift;
+    _ring: RingStructure
+    devs: Array[StorageDevice]
+    _replica2part2dev_id: Array[Array[Int]]
+    _part_shift: Int = 0
 
 
     /**

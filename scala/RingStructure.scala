@@ -2,9 +2,9 @@
 
 class RingStructure {
 
-    ArrayList<StorageDevice> devs;
-    int part_shift;
-    int[][] replica2part2dev_id;
+    devs: Array[StorageDevice]
+    part_shift: Int
+    replica2part2dev_id: Array[Array[Int]]
 
 
     public static byte[] toBytes(short s) {
