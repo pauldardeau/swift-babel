@@ -43,7 +43,7 @@ method init*(self: BaseStoragePolicy, idx: int, name: string="", is_default: str
                 self.alias_list.add(alias)
         self.is_deprecated = config_true_value(is_deprecated)
         self.is_default = config_true_value(is_default)
-        if self.policy_type not in BaseStoragePolicy.policy_type_to_policy_cls:
+        if not BaseStoragePolicy.policy_type_to_policy_cls.contains(self.policy_type):
             raise newPolicyError("Invalid type", self.policy_type)
         if self.is_deprecated and self.is_default:
             raise newPolicyError("Deprecated policy can not be default.  " &
