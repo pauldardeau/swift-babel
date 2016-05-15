@@ -2,7 +2,7 @@
 NIM_CC="nim"
 CC_OPTS="c"
 
-#${NIM_CC} ${CC_OPTS} AuditLocation.nim
+${NIM_CC} ${CC_OPTS} AuditLocation.nim
 #${NIM_CC} ${CC_OPTS} AuditorWorker.nim
 #${NIM_CC} ${CC_OPTS} BaseDiskFile.nim
 #${NIM_CC} ${CC_OPTS} BaseDiskFileManager.nim
