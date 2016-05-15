@@ -17,6 +17,6 @@ CC_OPTS="c"
 #${NIM_CC} ${CC_OPTS} utils.nim
 ${NIM_CC} ${CC_OPTS} StatBuckets.nim
 ${NIM_CC} ${CC_OPTS} StorageDevice.nim
-#${NIM_CC} ${CC_OPTS} StoragePolicy.nim
+${NIM_CC} ${CC_OPTS} StoragePolicy.nim
 ${NIM_CC} ${CC_OPTS} StoragePolicyCollection.nim
 ${NIM_CC} ${CC_OPTS} SwiftUtils.nim

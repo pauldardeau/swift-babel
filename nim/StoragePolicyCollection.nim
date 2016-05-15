@@ -1,6 +1,6 @@
 import tables
 
-import StoragePolicy
+include StoragePolicy
 
 
 type
