@@ -1,5 +1,6 @@
 import Ring
 import PolicyError
+import utils
 
 
 type
@@ -10,12 +11,14 @@ type
         object_ring*: Ring
         is_deprecated*: bool
         is_default*: bool
+        policy_type*: string
 
 
     #policy_type_to_policy_cls = {}
 
+proc validate_policy_name*(self: BaseStoragePolicy, name: string): bool
 
-method init*(self: BaseStoragePolicy, idx: int, name: string="", is_default: bool=false, is_deprecated: bool=false,
+method init*(self: BaseStoragePolicy, idx: int, name: string="", is_default: string="false", is_deprecated: string="false",
                  object_ring: Ring=nil, aliases: string="") =
         # do not allow BaseStoragePolicy class to be instantiated directly
         #if type(self) == BaseStoragePolicy:
@@ -29,21 +32,21 @@ method init*(self: BaseStoragePolicy, idx: int, name: string="", is_default: boo
             raise newPolicyError("Invalid index", idx)
         self.alias_list = @[]
         if not name.isNil or not self.validate_policy_name(name):
-            raise newPolicyError("Invalid name %r" % name, idx)
-        self.alias_list.append(name)
-        if aliases:
-            names_list = list_from_csv(aliases)
+            raise newPolicyError("Invalid name " & name, idx)
+        self.alias_list.add(name)
+        if aliases != "":
+            var names_list = utils.list_from_csv(aliases)
             for alias in names_list:
                 if alias == name:
                     continue
-                self.validate_policy_name(alias)
-                self.alias_list.append(alias)
+                discard self.validate_policy_name(alias)
+                self.alias_list.add(alias)
         self.is_deprecated = config_true_value(is_deprecated)
         self.is_default = config_true_value(is_default)
         if self.policy_type not in BaseStoragePolicy.policy_type_to_policy_cls:
             raise newPolicyError("Invalid type", self.policy_type)
         if self.is_deprecated and self.is_default:
-            raise newPolicyError("Deprecated policy can not be default.  " ~
+            raise newPolicyError("Deprecated policy can not be default.  " &
                               "Invalid config", self.idx)
 
         self.ring_name = get_policy_string("object", self.idx)
@@ -139,7 +142,7 @@ method get_info*(self: BaseStoragePolicy, config: bool=false) =
             info.pop("policy_type")
         return info
 
-method validate_policy_name*(self: BaseStoragePolicy, name: string): bool =
+proc validate_policy_name*(self: BaseStoragePolicy, name: string): bool =
         #[
         Helper function to determine the validity of a policy name. Used
         to check policy names before setting them.
@@ -176,7 +179,7 @@ method add_name*(self: BaseStoragePolicy, name: string) =
         ]#
 
         if self.validate_policy_name(name):
-            self.alias_list.append(name)
+            self.alias_list.add(name)
 
 method remove_name*(self: BaseStoragePolicy, name: string) =
         #[
