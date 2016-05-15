@@ -1,8 +1,8 @@
 import tables
 
 type
-    StatBuckets*: ref object
-        stats_buckets*: Table[int, long]
-        over_counter*: long
+    StatBuckets* = object
+        stats_buckets*: Table[int, int64]
+        over_counter*: int64
 
 
